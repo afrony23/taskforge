@@ -1,33 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TaskForge</title>
+    <title>TaskForge - Matrix Mode</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>TaskForge 🔥</h1>
-    <p>Current Time: {{ current_time }}</p>
-    
-    <div class="tasks">
-        {% for task in tasks %}
-        <div class="task">
-            <input type="checkbox" id="task-{{ task.id }}" {% if task.done %}checked{% endif %}>
-            <label for="task-{{ task.id }}">{{ task.name }}</label>
-            <button onclick="setReminder({{ task.id }})">⏰ Remind Me</button>
-        </div>
-        {% endfor %}
-    </div>
-
+    <!-- Falling code animation -->
+    <div id="matrixEffect"></div>
+    <h1>TaskForge <span style="color:white">></span> <span style="color:#00FF41">Matrix Mode</span></h1>
+    <!-- ... (paste the FULL HTML from earlier) ... -->
     <script>
-        function setReminder(taskId) {
-            const minutes = prompt("Remind in how many minutes?", "30");
-            fetch("/set_reminder", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `task_id=${taskId}&minutes=${minutes}`
-            }).then(response => response.json())
-              .then(data => alert(data.message));
-        }
+        window.onload = createMatrixEffect;
     </script>
 </body>
 </html>
